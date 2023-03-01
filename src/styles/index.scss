@@ -1,2 +1,12 @@
 // 全局样式文件
 @import './icon.scss';
+
+body {
+  background-color: #F5F7F9;
+}
+
+.top-van-nav-bar {
+  .van-nav-bar__title {
+    color: #fff;
+  }
+}
