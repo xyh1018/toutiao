@@ -17,3 +17,14 @@ export const sendSms = (mobile) => {
     mobile: mobile
   })
 }
+
+// 获取用户信息
+export const getUserInfo = (n) => {
+  return axios({
+    method: 'GET',
+    url: '/v1_0/user'
+    // headers: {
+    //   Authorization: `Bearer ${store.state.user.token}`
+    // }
+  })
+}

@@ -1,7 +1,7 @@
 <template>
   <!-- 导航栏 -->
-  <van-nav-bar class="top-van-nav-bar" title="登陆" />
-  <!-- 提交表单 -->
+  <van-nav-bar class="top-van-nav-bar" title="登陆" left-text="返回" left-arrow @click-left="onClickLeft"/>
+<!-- 提交表单 -->
   <van-form @submit="onSubmit" ref="loginForm">
     <van-cell-group inset>
       <van-field v-model="user.mobile" name="mobile" placeholder="请输入手机号" type="number" maxlength="11"
@@ -30,7 +30,7 @@
     </div>
   </van-form>
   <!-- 隐私条款 -->
-  <div class="yinsi-btn">
+  <div class="yinsi-btn" @click="wanNengSms">
     隐私条款
   </div>
 </template>
@@ -69,17 +69,24 @@ export default {
       })
       // Toast 默认采用单例模式，即同一时间只会存在一个 Toast,
       // 所以当请求 成功/失败 时，成功/失败弹窗弹出，加载中弹窗会立刻消失。
-      const user = this.user
-      // user是一个对象，包含用户输入的手机号和验证码
+      // 请求登陆
       try {
-        const res = await login(user)
-        console.log('登录成功', res)
-        showSuccessToast('登录成功')
+        const { data } = await login(this.user)
+        console.log(data)
+        this.$store.commit('setUser', data.data)
+        showSuccessToast({
+          type: 'success',
+          message: '登陆成功',
+          closeOnClickOverlay: true,
+          closeOnClick: true,
+          duration: 800
+        })
+        // 登陆成功跳转
+        this.$router.back()
       } catch (err) {
         if (err.response.status === 400) {
           showFailToast('手机号或验证码错误')
         } else {
-          console.log('登录失败，请稍后重试', err)
           showFailToast('登录失败，请稍后重试')
         }
       }
@@ -96,7 +103,7 @@ export default {
       try {
         const res = await sendSms(this.user.mobile)
         this.isCountDownShow = true
-        console.log('发送成功', res)
+        console.log('验证码发送成功', res)
       } catch (err) {
         this.isCountDownShow = false
         if (err.response.status === 429) {
@@ -105,6 +112,17 @@ export default {
           showFailToast('发送失败，请稍后重试')
         }
       }
+    },
+    // 返回按钮
+    onClickLeft() {
+      history.back()
+    },
+    // 万能验证码
+    wanNengSms() {
+      showNotify({
+        type: 'success',
+        message: '万能验证码：246810'
+      })
     }
   }
 }

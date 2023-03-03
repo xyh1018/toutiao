@@ -12,4 +12,5 @@ import 'amfe-flexible' // 动态设置REM基准值
 const app = createApp(App)
 app.use(Vant)
 app.use(store)
-app.use(router).mount('#app')
+app.use(router)
+app.mount('#app')
