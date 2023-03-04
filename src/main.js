@@ -9,6 +9,8 @@ import './styles/index.scss'
 import 'vant/lib/index.css'// vant全局样式
 import 'amfe-flexible' // 动态设置REM基准值
 
+// 加载dayjs
+import './utils/dayjs'
 const app = createApp(App)
 app.use(Vant)
 app.use(store)

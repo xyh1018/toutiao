@@ -28,3 +28,20 @@ export const getUserInfo = (n) => {
     // }
   })
 }
+
+// 获取用户频道列表
+export const getUserChannels = () => {
+  return axios({
+    method: 'GET',
+    url: '/v1_0/user/channels'
+  })
+}
+
+// 获取文章新闻推荐
+export const getArticles = (params) => {
+  return axios({
+    method: 'GET',
+    url: '/v1_0/articles',
+    params: params
+  })
+}

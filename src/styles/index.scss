@@ -3,20 +3,76 @@
 
 body {
   background-color: #F5F7F9;
+
   .top-van-nav-bar {
     .van-nav-bar__title {
       color: #fff;
     }
-  
+
     .van-nav-bar__text {
       color: #fff;
     }
-  
+
     .van-icon:before {
       color: #fff;
     }
   }
+
   .van-grid-item__text {
     font-size: 28px;
+  }
+
+  // 首页顶部标签栏样式
+  .home-top-nav {
+    .van-button__icon {
+      color: #fff;
+    }
+
+    .van-nav-bar__title {
+      max-width: 100%
+    }
+  }
+
+  // 首页横向滚动栏
+  .van-tab-container {
+
+    .van-tab {
+      width: 200px;
+      height: 82px;
+      border-right: 1px solid #edeff3;
+      color: #777777;
+    }
+
+    .van-tab--active {
+      color: #333333;
+    }
+
+    .van-tabs__line {
+      width: 31px;
+      height: 6px;
+      bottom: 40px;
+    }
+
+    .van-tabs__nav--line.van-tabs__nav--complete {
+      padding-left: 0;
+      padding-right: 50px;
+    }
+
+    .van-tabs__wrap {
+      position: fixed;
+      top: 92px;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+  }
+
+  .article-list .van-cell__value {
+    flex: unset;
+  }
+
+  .article-list .van-cell__title {
+    display: flex;
+    flex-direction: column;
   }
 }
