@@ -75,4 +75,49 @@ body {
     display: flex;
     flex-direction: column;
   }
+
+  // 频道编辑弹出页
+  .channel-edit {
+    .van-grid-item__content.van-grid-item__content--center {
+      background-color: #f4f5f6;
+      border-radius: 6px;
+    }
+
+    .van-badge__wrapper.van-icon.van-icon-clear.van-grid-item__icon,
+    .van-badge__wrapper.van-icon.van-icon-add.van-grid-item__icon {
+      position: absolute;
+      top: -3px;
+      right: 6px;
+    }
+
+    .van-grid-item__text {
+      margin: 0;
+      font-size: 12px;
+    }
+
+    .van-badge__wrapper {
+      position: static;
+    }
+  }
+
+  // 搜索弹出页
+  .searchitem .van-search__action {
+    color: #fff;
+  }
+
+  .search-suggest {
+    .red {
+      color: red;
+    }
+  }
+
+  // 文章详情
+  .article-container {
+    .van-button.van-button--info.van-button--small.van-button--round.follow-btn {
+      line-height: 70px;
+      border: 1px solid #c3c3c3;
+      font-size: 30px;
+      color: #666666;
+    }
+  }
 }

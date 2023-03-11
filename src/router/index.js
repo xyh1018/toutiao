@@ -32,6 +32,17 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => { return import('@/views/login/LoginView.vue') }
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => { return import('@/views/search/SearchView.vue') }
+  },
+  {
+    path: '/article/:articleId',
+    name: 'article',
+    component: () => { return import('@/views/article/ArticleView.vue') },
+    props: true // 开启Props传参
   }
 ]
 

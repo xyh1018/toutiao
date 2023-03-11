@@ -24,7 +24,8 @@ module.exports = {
       },
       // proList 表示要转换的CSS属性
       // * 表示所有属性都转换
-      propList: ['*']
+      propList: ['*'],
+      exclude: 'github-markdown'
     }
   }
 }

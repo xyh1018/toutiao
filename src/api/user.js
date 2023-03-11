@@ -45,3 +45,60 @@ export const getArticles = (params) => {
     params: params
   })
 }
+
+// 关注用户
+export const followUser = (userId) => {
+  return axios({
+    method: 'POST',
+    url: '/v1_0/user/followings',
+    data: {
+      target: userId
+    }
+  })
+}
+
+// 取消关注用户
+export const cancelFollow = (userId) => {
+  return axios({
+    method: 'DELETE',
+    url: `/v1_0/user/followings/${userId}`
+  })
+}
+
+// 点赞文章
+export const setLike = (articleId) => {
+  return axios({
+    method: 'POST',
+    url: '/v1_0/article/likings',
+    data: {
+      target: articleId
+    }
+  })
+}
+
+// 取消点赞
+export const cancelLike = (articleId) => {
+  return axios({
+    method: 'DELETE',
+    url: `/v1_0/article/likings/${articleId}`
+  })
+}
+
+// 收藏文章
+export const setCollect = (articleId) => {
+  return axios({
+    method: 'POST',
+    url: '/v1_0/article/collections',
+    data: {
+      target: articleId
+    }
+  })
+}
+
+// 取消收藏
+export const cancelCollect = (articleId) => {
+  return axios({
+    method: 'DELETE',
+    url: `/v1_0/article/collections/${articleId}`
+  })
+}
