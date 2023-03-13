@@ -76,4 +76,87 @@
 
 .toutiao-yuedu:before {
   content: "\e611";
+}
+
+body {
+  background-color: #F5F7F9;
+}
+body .top-van-nav-bar .van-nav-bar__title {
+  color: #fff;
+}
+body .top-van-nav-bar .van-nav-bar__text {
+  color: #fff;
+}
+body .top-van-nav-bar .van-icon:before {
+  color: #fff;
+}
+body .van-grid-item__text {
+  font-size: 28px;
+}
+body .home-top-nav .van-button__icon {
+  color: #fff;
+}
+body .home-top-nav .van-nav-bar__title {
+  max-width: 100%;
+}
+body .van-tab-container .van-tab {
+  width: 200px;
+  height: 82px;
+  border-right: 1px solid #edeff3;
+  color: #777777;
+}
+body .van-tab-container .van-tab--active {
+  color: #333333;
+}
+body .van-tab-container .van-tabs__line {
+  width: 31px;
+  height: 6px;
+  bottom: 40px;
+}
+body .van-tab-container .van-tabs__nav--line.van-tabs__nav--complete {
+  padding-left: 0;
+  padding-right: 50px;
+}
+body .van-tab-container .van-tabs__wrap {
+  position: fixed;
+  top: 92px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+body .article-list .van-cell__value {
+  flex: unset;
+}
+body .article-list .van-cell__title {
+  display: flex;
+  flex-direction: column;
+}
+body .channel-edit .van-grid-item__content.van-grid-item__content--center {
+  background-color: #f4f5f6;
+  border-radius: 6px;
+}
+body .channel-edit .van-badge__wrapper.van-icon.van-icon-clear.van-grid-item__icon,
+body .channel-edit .van-badge__wrapper.van-icon.van-icon-add.van-grid-item__icon {
+  position: absolute;
+  top: -3px;
+  right: 6px;
+}
+body .channel-edit .van-grid-item__text {
+  margin: 0;
+  font-size: 12px;
+}
+body .channel-edit .van-badge__wrapper {
+  position: static;
+}
+body .searchitem .van-search__action {
+  color: #fff;
+}
+body .search-suggest .red {
+  color: red;
+}
+body .article-container .van-button.van-button--info.van-button--small.van-button--round.follow-btn {
+  line-height: 70px;
+  border: 1px solid #c3c3c3;
+  font-size: 30px;
+  color: #666666;
 }/*# sourceMappingURL=index.css.map */

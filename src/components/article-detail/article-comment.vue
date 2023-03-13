@@ -1,7 +1,7 @@
 <template>
   <div>
     <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" :immediate-check="false" @load="onLoad">
-      <CommentItem :comment="item" v-for="item in comment" :key="item.com_id" @liking="onLiking" @reply="$emit('reply',$event)"/>
+      <CommentItem :isShowReply="ShowReply" :comment="item" v-for="item in comment" :key="item.com_id" @liking="onLiking" @reply="$emit('reply',$event)"/>
     </van-list>
   </div>
 </template>
@@ -63,6 +63,10 @@ export default {
     type: {
       type: String,
       default: 'a'
+    },
+    ShowReply: {
+      type: Boolean,
+      default: true
     }
   },
   components: {
@@ -71,7 +75,7 @@ export default {
   created() {
     this.loading = true
     this.onLoad()
-    console.log(this.comment)
+    console.log('文章评论', this.comment)
   }
 }
 </script>

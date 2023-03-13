@@ -37,9 +37,10 @@
         <!-- /用户信息 -->
         <!-- 文章内容 -->
         <div class="article-content markdown-body" ref="article-content" v-html="articleDetail.content"></div>
-        <van-divider>正文结束</van-divider>
+        <van-divider id="Go_Position">正文结束</van-divider>
         <!-- 评论列表 -->
-        <ArticleComment @reply="onreply" :comment="commentList" :source="articleDetail.art_id"
+        <ArticleComment
+        @reply="onreply" :comment="commentList" :source="articleDetail.art_id"
           @loadSuccess="onTotalCount">
         </ArticleComment>
       </div>
@@ -59,18 +60,16 @@
         <van-button class="retry-btn" @click="refresh">点击重试</van-button>
       </div>
       <!-- /加载失败：其它未知错误（例如网络原因或服务端异常） -->
-
-      <!-- 评论弹出层区域 -->
-      <van-popup v-model:show="showBottom" position="bottom" :style="{ height: '20%' }">
-        <CommentPopup :id="articleDetail.art_id" @popupClose="closePopup"></CommentPopup>
-      </van-popup>
-      <!-- /评论弹出层区域 -->
     </div>
-
+    <!-- 评论弹出层区域 -->
+    <van-popup v-model:show="showBottom" position="bottom" :style="{ height: '20%' }">
+      <CommentPopup :id="articleDetail.art_id" @popupClose="closePopup"></CommentPopup>
+    </van-popup>
+    <!-- /评论弹出层区域 -->
     <!-- 底部区域 -->
     <div class="article-bottom">
       <van-button class="comment-btn" type="default" round size="small" @click="showBottom = true">写评论</van-button>
-      <van-icon name="comment-o" color="#777" :badge="articleDetail.comm_count" />
+      <van-icon name="comment-o" color="#777" :badge="articleDetail.comm_count" @click="goPosition"/>
       <CollectItem :article="articleDetail" @collect="onCollect"></CollectItem>
       <LikeItem :article="articleDetail" @like="likeArticle"></LikeItem>
       <van-icon name="share" color="#777777"></van-icon>
@@ -79,7 +78,7 @@
 
     <!-- 评论回复 -->
     <van-popup v-model:show="showReply" position="bottom" :style="{ height: '90%' }">
-      <CommentReply v-if="showReply" :comment="currentComment" @close="closeReply"></CommentReply>
+      <CommentReply v-if="showReply" :comment="currentComment" @close="closeReply" @updateReplyCount="updateReplyCount"></CommentReply>
     </van-popup>
     <!-- /评论回复 -->
   </div>
@@ -129,7 +128,7 @@ export default {
     },
     back() {
       this.$router.back()
-      console.log('back')
+      console.log('back 返回首页')
     },
     refresh() {
       this.loadArticle()
@@ -166,6 +165,7 @@ export default {
     closePopup(data) {
       this.showBottom = false
       this.commentList.unshift(data.new_obj)
+      this.articleDetail.comm_count++
     },
     onreply(comment) {
       this.showReply = true
@@ -173,6 +173,13 @@ export default {
     },
     closeReply() {
       this.showReply = false
+    },
+    updateReplyCount() {
+      this.currentComment.reply_count++
+      this.articleDetail.comm_count++
+    },
+    goPosition() {
+      document.getElementById('Go_Position').scrollIntoView()
     }
   },
   computed: {

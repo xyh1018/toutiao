@@ -11,7 +11,7 @@
     <van-tabs class="van-tab-container" v-model:active="active" swipeable animated>
       <van-tab v-for="(item) in channels" :title="item.name" :key="item.id">
         <!-- 频道内容 -->
-        <ArticleList :channel="item"></ArticleList>
+          <ArticleList :channel="item"></ArticleList>
       </van-tab>
       <template #nav-right>
         <!-- 汉堡按钮 -->

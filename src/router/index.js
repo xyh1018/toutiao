@@ -3,7 +3,6 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'layout',
     component: () => { return import('@/views/layout/LayoutView.vue') },
     children: [
       {

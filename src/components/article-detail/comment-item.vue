@@ -14,7 +14,7 @@
         <p class="comment-content">{{ comment.content }}</p>
         <div class="bottom-info">
           <span class="comment-pubdate">{{ time }}</span>
-          <van-button class="reply-btn" round @click="onReply">回复 {{ comment.reply_count }}</van-button>
+          <van-button v-if="isShowReply" class="reply-btn" round @click="onReply">回复 {{ comment.reply_count }}</van-button>
         </div>
       </div>
     </template>
@@ -29,6 +29,10 @@ export default {
     comment: {
       type: [Object],
       required: true
+    },
+    isShowReply: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

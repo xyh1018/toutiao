@@ -5,14 +5,14 @@
         <van-icon name="cross" @click="$emit('close')"></van-icon>
       </template>
     </van-nav-bar>
-    <CommentItem :comment="comment"></CommentItem>
+    <CommentItem :comment="comment" :isShowReply="false"></CommentItem>
     <van-nav-bar>
       <template #left>
         <div>全部回复</div>
       </template>
     </van-nav-bar>
     <ArticleComment
-     :comment="commentList" :source="comment.com_id" type="c"></ArticleComment>
+     :comment="commentList" :ShowReply="false" :source="comment.com_id" type="c"></ArticleComment>
     <div class="post-wrap">
       <van-button class="post-btn" @click="showBottom = true">写评论</van-button>
     </div>
@@ -45,11 +45,12 @@ export default {
     ArticleComment,
     CommentPopup
   },
-  emits: ['close'],
+  emits: ['close', 'updateReplyCount'],
   methods: {
     onSuccess(data) {
       this.showBottom = false
       console.log(data)
+      this.$emit('updateReplyCount')
       this.commentList.unshift(data.new_obj)
     }
   }
