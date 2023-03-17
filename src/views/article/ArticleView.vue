@@ -39,8 +39,7 @@
         <div class="article-content markdown-body" ref="article-content" v-html="articleDetail.content"></div>
         <van-divider id="Go_Position">正文结束</van-divider>
         <!-- 评论列表 -->
-        <ArticleComment
-        @reply="onreply" :comment="commentList" :source="articleDetail.art_id"
+        <ArticleComment @reply="onreply" :comment="commentList" :source="articleDetail.art_id"
           @loadSuccess="onTotalCount">
         </ArticleComment>
       </div>
@@ -69,7 +68,7 @@
     <!-- 底部区域 -->
     <div class="article-bottom">
       <van-button class="comment-btn" type="default" round size="small" @click="showBottom = true">写评论</van-button>
-      <van-icon name="comment-o" color="#777" :badge="articleDetail.comm_count" @click="goPosition"/>
+      <van-icon name="comment-o" color="#777" :badge="articleDetail.comm_count" @click="goPosition" />
       <CollectItem :article="articleDetail" @collect="onCollect"></CollectItem>
       <LikeItem :article="articleDetail" @like="likeArticle"></LikeItem>
       <van-icon name="share" color="#777777"></van-icon>
@@ -78,7 +77,8 @@
 
     <!-- 评论回复 -->
     <van-popup v-model:show="showReply" position="bottom" :style="{ height: '90%' }">
-      <CommentReply v-if="showReply" :comment="currentComment" @close="closeReply" @updateReplyCount="updateReplyCount"></CommentReply>
+      <CommentReply v-if="showReply" :comment="currentComment" @close="closeReply" @updateReplyCount="updateReplyCount">
+      </CommentReply>
     </van-popup>
     <!-- /评论回复 -->
   </div>
@@ -96,6 +96,7 @@ import CommentPopup from '@/components/article-detail/comment-popup.vue'
 import CommentReply from '@/views/article/components/comment-reply.vue'
 
 export default {
+  name: 'ArticleView',
   data() {
     return {
       articleDetail: {},
@@ -216,6 +217,14 @@ export default {
 @import './github-markdown.css';
 
 .article-container {
+  .page-nav-bar {
+    background-color: #1989fa;
+  }
+
+  .page-nav-bar-leftIcon {
+    color: white;
+  }
+
   .main-wrap {
     position: fixed;
     left: 0;

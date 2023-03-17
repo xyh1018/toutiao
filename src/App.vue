@@ -1,7 +1,10 @@
 <template>
-  <KeepAlive>
-    <router-view/>
-  </KeepAlive>
+    <router-view v-slot="{ Component }">
+      <keep-alive include="LayoutView">
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
+    <!-- <RouterView></RouterView> -->
 </template>
 
 <script>
