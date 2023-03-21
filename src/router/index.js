@@ -3,7 +3,6 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'layout',
     component: () => { return import('@/views/layout/LayoutView.vue') },
     children: [
       {
@@ -43,6 +42,11 @@ const routes = [
     name: 'article',
     component: () => { return import('@/views/article/ArticleView.vue') },
     props: true // 开启Props传参
+  },
+  {
+    path: '/person/profile',
+    name: 'userprofile',
+    component: () => { return import('@/views/user-profile/UserProfile.vue') }
   }
 ]
 

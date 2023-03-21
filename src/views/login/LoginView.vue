@@ -39,7 +39,7 @@
 import { showSuccessToast, showFailToast, showLoadingToast, showNotify } from 'vant'
 import { login, sendSms } from '@/api/user'
 export default {
-  name: 'App',
+  name: 'LoginView',
   data() {
     return {
       user: {

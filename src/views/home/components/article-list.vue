@@ -1,9 +1,9 @@
 <template>
-  <div class="article-list">
+  <div class="article-list" ref="article-list">
     <van-pull-refresh v-model="refreshloading" @refresh="onRefresh" :success-text="refreshSuccessText">
       <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" v-model:error="error"
         error-text="请求失败，点击重新加载" @load="onLoad">
-          <ArticleItem :article="item" v-for="item in list" :key="item.art_id"></ArticleItem>
+        <ArticleItem :article="item" v-for="item in list" :key="item.art_id"></ArticleItem>
       </van-list>
     </van-pull-refresh>
   </div>
@@ -12,6 +12,7 @@
 <script>
 import { getArticles } from '@/api/user'
 import ArticleItem from '@/components/article-item/articleItem.vue'
+import { debounce } from 'lodash'
 
 export default {
   name: 'ArticleList',
@@ -23,7 +24,8 @@ export default {
       timestamp: null,
       error: false,
       refreshloading: false,
-      refreshSuccessText: '刷新成功'
+      refreshSuccessText: '刷新成功',
+      scrollTop: 0
     }
   },
   components: {
@@ -79,6 +81,16 @@ export default {
         this.refreshloading = false
       }
     }
+  },
+  mounted() {
+    this.$refs['article-list'].onscroll = debounce(() => {
+      console.log(this.$refs['article-list'].scrollTop)
+      this.scrollTop = this.$refs['article-list'].scrollTop
+    }, 50)
+  },
+  activated() {
+    this.$refs['article-list'].scrollTop = this.scrollTop
+    // 虫从文章详情返回到文章列表后，位置保持不变
   }
 }
 </script>

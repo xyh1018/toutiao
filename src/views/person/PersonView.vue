@@ -15,7 +15,7 @@
           <span class="left-text">{{ userInfo.name }}</span>
         </div>
         <div class="right">
-          <van-button class="right-btn">编辑资料</van-button>
+          <van-button class="right-btn" @click="$router.push('/person/profile')">编辑资料</van-button>
         </div>
       </div>
       <div class="data-info">
@@ -41,12 +41,12 @@
 
   <!-- 收藏&历史 -->
   <van-grid :column-num="2" clickable>
-    <van-grid-item class="grid-item" icon="photo-o" text="收藏">
+    <van-grid-item class="grid-item" icon="photo-o" text="收藏" @click="collect">
       <template #icon>
         <i class="toutiao toutiao-shoucang"></i>
       </template>
     </van-grid-item>
-    <van-grid-item class="grid-item" icon="photo-o" text="历史">
+    <van-grid-item class="grid-item" icon="photo-o" text="历史" @click="history">
       <template #icon>
         <i class="toutiao toutiao-lishi"></i>
       </template>
@@ -54,19 +54,31 @@
   </van-grid>
   <!-- 通知 -->
   <van-cell title="消息通知" is-link />
-  <van-cell title="小智同学" is-link />
-  <van-cell title="退出登陆" class="login-out" @click="onLogOut" v-if="user" clickable=""/>
+  <van-cell title="小智同学" is-link @click="showChat = true" />
+  <van-cell title="退出登陆" class="login-out" @click="onLogOut" v-if="user" clickable="" />
+  <!-- 收藏&历史弹窗 -->
+  <van-popup v-model:show="showCollect" position="bottom" :style="{ height: '100%' }">
+    <collectItem v-if="showCollect" :number="number" @close="showCollect = false"></collectItem>
+  </van-popup>
+  <!-- 机器人聊天弹窗 -->
+  <van-popup v-model:show="showChat" position="bottom" :style="{ height: '100%' }">
+    <chatItem v-if="showChat" @close="showChat = close"></chatItem>
+  </van-popup>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import { showConfirmDialog, showNotify } from 'vant'
 import { getUserInfo } from '@/api/user'
-
+import collectItem from './component/collect-item.vue'
+import chatItem from './component/chat-item.vue'
 export default {
   data() {
     return {
-      userInfo: {} // 用户信息
+      userInfo: {}, // 用户信息
+      showCollect: false,
+      number: 0,
+      showChat: false
     }
   },
   computed: {
@@ -97,6 +109,14 @@ export default {
       } catch (err) {
         console.log('获取用户信息失败', err)
       }
+    },
+    collect() {
+      this.showCollect = true
+      this.number = 0
+    },
+    history() {
+      this.showCollect = true
+      this.number = 1
     }
   },
   created() {
@@ -104,6 +124,15 @@ export default {
     if (this.user) {
       this.loadUserInfo()
     }
+  },
+  activated() {
+    if (this.user) {
+      this.loadUserInfo()
+    }
+  },
+  components: {
+    collectItem,
+    chatItem
   }
 }
 </script>

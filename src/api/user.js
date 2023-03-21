@@ -102,3 +102,53 @@ export const cancelCollect = (articleId) => {
     url: `/v1_0/article/collections/${articleId}`
   })
 }
+
+// 获取当前登陆用户的个人资料
+export const getUserProfile = () => {
+  return axios({
+    method: 'GET',
+    url: '/v1_0/user/profile'
+  })
+}
+
+// 编辑用户个人资料
+export const setUserProfile = (data) => {
+  return axios({
+    method: 'PATCH',
+    url: '/v1_0/user/profile',
+    data
+  })
+}
+
+// 编辑用户头像
+export const setUserPhoto = (data) => {
+  return axios({
+    method: 'PATCH',
+    url: '/v1_0/user/photo',
+    data
+  })
+}
+
+// 获取用户收藏
+export const getUserCollect = () => {
+  return axios({
+    method: 'GET',
+    url: '/v1_0/article/collections',
+    params: {
+      per_page: 10
+    }
+  })
+}
+
+// 获取用户历史
+export const getUserHistory = () => {
+  return axios({
+    method: 'GET',
+    url: '/v1_0/user/histories',
+    params: {
+      per_page: 10
+    }
+  })
+}
+
+// 小智同学
