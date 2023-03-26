@@ -1,7 +1,7 @@
 <template>
   <!-- 导航栏 -->
-  <van-nav-bar class="top-van-nav-bar" title="登陆" left-text="返回" left-arrow @click-left="onClickLeft"/>
-<!-- 提交表单 -->
+  <van-nav-bar class="top-van-nav-bar" title="登陆" left-text="返回" left-arrow @click-left="onClickLeft" />
+  <!-- 提交表单 -->
   <van-form @submit="onSubmit" ref="loginForm">
     <van-cell-group inset>
       <van-field v-model="user.mobile" name="mobile" placeholder="请输入手机号" type="number" maxlength="11"

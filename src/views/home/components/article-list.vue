@@ -90,14 +90,20 @@ export default {
   },
   activated() {
     this.$refs['article-list'].scrollTop = this.scrollTop
-    // 虫从文章详情返回到文章列表后，位置保持不变
+    // 从文章详情返回到文章列表后，位置保持不变
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .article-list {
-  height: 100vh;
-  overflow-y: auto;
+  // height:100vh;
+  height: 100%;
+  // 在safari浏览器下，想要在滚动页面时隐藏工具栏
+  // 则不能再滚动元素上设置具体的高度 如height:100vh、height:1000px，而是设置百分比
+  // body元素则设置overflow:auto 让元素高度溢出时滚动
+
+  // height: calc(var(--vh, 1vh) * 100 - 46px);
+  // overflow-y: auto;
 }
 </style>

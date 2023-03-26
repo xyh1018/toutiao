@@ -81,7 +81,6 @@ export default {
 <style lang="scss" scoped>
 .home-container {
   padding-top: 184px;
-
   .home-top-nav {
     background-color: #1989fa;
 

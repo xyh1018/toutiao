@@ -35,6 +35,7 @@
           <FollowItem :isFollowed="articleDetail" @updataFollow="updata"></FollowItem>
         </van-cell>
         <!-- /用户信息 -->
+
         <!-- 文章内容 -->
         <div class="article-content markdown-body" ref="article-content" v-html="articleDetail.content"></div>
         <van-divider id="Go_Position">正文结束</van-divider>
@@ -60,11 +61,13 @@
       </div>
       <!-- /加载失败：其它未知错误（例如网络原因或服务端异常） -->
     </div>
+
     <!-- 评论弹出层区域 -->
     <van-popup v-model:show="showBottom" position="bottom" :style="{ height: '20%' }">
       <CommentPopup :id="articleDetail.art_id" @popupClose="closePopup"></CommentPopup>
     </van-popup>
     <!-- /评论弹出层区域 -->
+
     <!-- 底部区域 -->
     <div class="article-bottom">
       <van-button class="comment-btn" type="default" round size="small" @click="showBottom = true">写评论</van-button>
@@ -219,6 +222,11 @@ export default {
 .article-container {
   .page-nav-bar {
     background-color: #1989fa;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    // bottom: 88px;
   }
 
   .page-nav-bar-leftIcon {
@@ -226,12 +234,13 @@ export default {
   }
 
   .main-wrap {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 92px;
-    bottom: 88px;
-    overflow-y: scroll;
+    // position: fixed;
+    // left: 0;
+    // right: 0;
+    // top: 92px;
+    // bottom: 88px;
+    // overflow-y: scroll;
+    padding-top: 82px;
     background-color: #fff;
   }
 
@@ -274,7 +283,6 @@ export default {
 
     .article-content {
       padding: 55px 32px;
-
       p {
         text-align: justify;
       }

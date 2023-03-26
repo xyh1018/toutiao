@@ -165,7 +165,7 @@ export default {
     white-space: nowrap;
 
     .channel-edit-grids-text {
-      font-size: 12px;
+      font-size: 24px;
       color: #323233;
     }
 
