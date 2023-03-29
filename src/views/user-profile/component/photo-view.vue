@@ -1,7 +1,9 @@
 <template>
   <div>
     <van-nav-bar class="nav-bar" title="设置头像" right-text="完成" left-arrow @click-right="ok" @click-left="$emit('close')" />
-    <img class="user-photo" :src="photo" alt="用户头像" ref="img">
+    <div class="photo-box">
+      <img class="user-photo" :src="photo" alt="用户头像" ref="img">
+    </div>
   </div>
 </template>
 <script>
@@ -43,5 +45,13 @@ export default {
 .user-photo {
   display: block;
   max-width: 100%;
+  height: 100%;
+}
+.photo-box {
+  width: 100%;
+  height: calc(100vh - 46PX);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
