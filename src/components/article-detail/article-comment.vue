@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" :immediate-check="false" @load="onLoad">
+  <div class="comment">
+    <van-empty v-if="!totalCount" description="暂无评论" />
+    <van-list v-model:loading="loading" :finished="finished" :immediate-check="false" @load="onLoad">
       <CommentItem :isShowReply="ShowReply" :comment="item" v-for="item in comment" :key="item.com_id" @liking="onLiking" @reply="$emit('reply',$event)"/>
     </van-list>
   </div>
@@ -67,6 +68,10 @@ export default {
     ShowReply: {
       type: Boolean,
       default: true
+    },
+    totalCount: {
+      type: Number,
+      required: true
     }
   },
   components: {
@@ -79,3 +84,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.comment {
+  padding-bottom: 44PX;
+}
+</style>

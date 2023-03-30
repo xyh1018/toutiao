@@ -40,7 +40,11 @@
         <div class="article-content markdown-body" ref="article-content" v-html="articleDetail.content"></div>
         <van-divider id="Go_Position">正文结束</van-divider>
         <!-- 评论列表 -->
-        <ArticleComment @reply="onreply" :comment="commentList" :source="articleDetail.art_id"
+        <ArticleComment
+          @reply="onreply"
+          :comment="commentList"
+          :source="articleDetail.art_id"
+          :totalCount = total_count
           @loadSuccess="onTotalCount">
         </ArticleComment>
       </div>
@@ -64,7 +68,7 @@
 
     <!-- 评论弹出层区域 -->
     <van-popup v-model:show="showBottom" position="bottom" :style="{ height: '20%' }">
-      <CommentPopup :id="articleDetail.art_id" @popupClose="closePopup"></CommentPopup>
+      <CommentPopup :id="articleDetail.art_id" @popupClose="closePopup" @pulsTotalCount="pulsTotalCount"></CommentPopup>
     </van-popup>
     <!-- /评论弹出层区域 -->
 
@@ -184,6 +188,9 @@ export default {
     },
     goPosition() {
       document.getElementById('Go_Position').scrollIntoView()
+    },
+    pulsTotalCount() {
+      this.total_count++
     }
   },
   computed: {

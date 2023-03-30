@@ -12,7 +12,12 @@
       </template>
     </van-nav-bar>
     <ArticleComment
-     :comment="commentList" :ShowReply="false" :source="comment.com_id" type="c"></ArticleComment>
+      :comment="commentList"
+      :ShowReply="false"
+      :source="comment.com_id"
+      type="c"
+      :totalCount="commentList.length"
+     ></ArticleComment>
     <div class="post-wrap">
       <van-button class="post-btn" @click="showBottom = true">写评论</van-button>
     </div>
