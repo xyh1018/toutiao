@@ -84,4 +84,5 @@ export default {
 
 .article-label-text {
   flex: 1;
-}</style>
+}
+</style>

@@ -4,6 +4,7 @@ import store from '@/store'
 import { getItem, removeItem } from './storage.js'
 import router from '@/router'
 
+// 创建axios实例
 const request = axios.create({
   baseURL: 'http://toutiao.itheima.net/'
   // 基础路径
@@ -13,6 +14,8 @@ const refreshTokenAxios = axios.create({
   baseURL: 'http://toutiao.itheima.net/'
 })
 
+// eslint-disable-next-line no-proto
+console.log(axios.prototype, refreshTokenAxios.prototype)
 // 请求拦截器
 request.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
