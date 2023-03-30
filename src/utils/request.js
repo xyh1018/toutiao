@@ -1,7 +1,7 @@
 // 封装请求模块
 import axios from 'axios'
 import store from '@/store'
-import { getItem } from './storage.js'
+import { getItem, removeItem } from './storage.js'
 import router from '@/router'
 
 // 创建axios实例
@@ -65,6 +65,7 @@ request.interceptors.response.use(function (response) {
       // error.config是本次失败配置对象
       return request(error.config)
     } catch (err) {
+      console.log('获取新Token失败')
       redirectLogin()
     }
   }
@@ -73,6 +74,11 @@ request.interceptors.response.use(function (response) {
 })
 
 function redirectLogin() {
+  // 如果token和refresh_token都失效，
+  // 则重定向到登录页面，同时删除本地和vuex中的用户token
+  // 预防用户不想登录时，点击返回按钮又会回到登录页面的问题
+  removeItem('TOUTIAO_USER')
+  store.commit('setUser', null)
   router.push('/login')
 }
 

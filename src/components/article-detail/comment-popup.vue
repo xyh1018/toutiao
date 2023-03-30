@@ -39,6 +39,8 @@ export default {
         this.message = ''
         // 关闭弹出层
         this.$emit('popupClose', data)
+        // total_count加一
+        this.$emit('pulsTotalCount')
         // 成功提示
         showToast('发布成功')
       } catch (err) {

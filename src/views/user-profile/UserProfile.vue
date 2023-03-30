@@ -28,7 +28,7 @@
     </van-popup>
     <!-- 头像 -->
     <van-popup v-model:show="showPhoto" position="bottom" :style="{ height: '100%' }">
-      <PhotoView :photo="photoUrl" @close="showPhoto = false" @photoOk="getPhotoMessage"></PhotoView>
+      <PhotoView v-if="showPhoto" :photo="photoUrl" @close="showPhoto = false" @photoOk="getPhotoMessage"></PhotoView>
     </van-popup>
   </div>
 </template>
@@ -131,6 +131,7 @@ export default {
       const file = this.$refs.input.files[0]
       // 生成缩略图
       this.photoUrl = window.URL.createObjectURL(file)
+      console.log(file, this.photoUrl)
       this.showPhoto = true
       // input如果选择同一个文件时不会触发change事件
       // 解决办法是--每次使用完毕，把它的value清空

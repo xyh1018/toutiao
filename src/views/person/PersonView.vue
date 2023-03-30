@@ -54,7 +54,7 @@
   </van-grid>
   <!-- 通知 -->
   <van-cell title="消息通知" is-link />
-  <van-cell title="小智同学" is-link @click="showChat = true" />
+  <van-cell title="小智同学" is-link @click="onShowChat" />
   <van-cell title="退出登陆" class="login-out" @click="onLogOut" v-if="user" clickable="" />
   <!-- 收藏&历史弹窗 -->
   <van-popup v-model:show="showCollect" position="bottom" :style="{ height: '100%' }">
@@ -117,6 +117,17 @@ export default {
     history() {
       this.showCollect = true
       this.number = 1
+    },
+    onShowChat() {
+      if (this.user) {
+        this.showChat = true
+      } else {
+        showNotify({
+          type: 'danger',
+          message: '账号未登录！',
+          duration: 800
+        })
+      }
     }
   },
   created() {
