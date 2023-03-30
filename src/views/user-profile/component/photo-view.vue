@@ -1,4 +1,5 @@
 <template>
+  <!-- 1 -->
   <div>
     <van-nav-bar class="nav-bar" title="设置头像" right-text="完成" left-arrow @click-right="ok" @click-left="$emit('close')" />
     <div class="photo-box">
