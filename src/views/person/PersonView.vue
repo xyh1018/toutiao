@@ -1,21 +1,43 @@
 <template>
   <!-- 未登陆视图 -->
-  <div v-if="!user" class="person-img">
-    <div class="person-img-login" @click="$router.push('/login')">
-      <img src="../../assets/mobile.png" alt="" class="login-btn">
+  <div
+    v-if="!user"
+    class="person-img"
+  >
+    <div
+      class="person-img-login"
+      @click="$router.push('/login')"
+    >
+      <img
+        src="../../assets/mobile.png"
+        alt=""
+        class="login-btn"
+      />
       <span class="text">登陆 / 注册</span>
     </div>
   </div>
   <!-- 登陆后视图 -->
-  <div v-else class="logined-img">
+  <div
+    v-else
+    class="logined-img"
+  >
     <div class="user-info">
       <div class="base-info">
         <div class="left">
-          <van-image class="left-img" round cover :src="userInfo.photo" />
+          <van-image
+            class="left-img"
+            round
+            cover
+            :src="userInfo.photo"
+          />
           <span class="left-text">{{ userInfo.name }}</span>
         </div>
         <div class="right">
-          <van-button class="right-btn" @click="$router.push('/person/profile')">编辑资料</van-button>
+          <van-button
+            class="right-btn"
+            @click="$router.push('/person/profile')"
+            >编辑资料</van-button
+          >
         </div>
       </div>
       <div class="data-info">
@@ -40,29 +62,70 @@
   </div>
 
   <!-- 收藏&历史 -->
-  <van-grid :column-num="2" clickable>
-    <van-grid-item class="grid-item" icon="photo-o" text="收藏" @click="collect">
+  <van-grid
+    :column-num="2"
+    clickable
+  >
+    <van-grid-item
+      class="grid-item"
+      icon="photo-o"
+      text="收藏"
+      @click="collect"
+    >
       <template #icon>
         <i class="toutiao toutiao-shoucang"></i>
       </template>
     </van-grid-item>
-    <van-grid-item class="grid-item" icon="photo-o" text="历史" @click="history">
+    <van-grid-item
+      class="grid-item"
+      icon="photo-o"
+      text="历史"
+      @click="history"
+    >
       <template #icon>
         <i class="toutiao toutiao-lishi"></i>
       </template>
     </van-grid-item>
   </van-grid>
   <!-- 通知 -->
-  <van-cell title="消息通知" is-link />
-  <van-cell title="小智同学" is-link @click="onShowChat" />
-  <van-cell title="退出登陆" class="login-out" @click="onLogOut" v-if="user" clickable="" />
+  <van-cell
+    title="消息通知"
+    is-link
+  />
+  <van-cell
+    title="小智同学"
+    is-link
+    @click="onShowChat"
+  />
+  <van-cell
+    title="退出登陆"
+    class="login-out"
+    @click="onLogOut"
+    v-if="user"
+    clickable=""
+  />
   <!-- 收藏&历史弹窗 -->
-  <van-popup v-model:show="showCollect" position="bottom" :style="{ height: '100%' }">
-    <collectItem v-if="showCollect" :number="number" @close="showCollect = false"></collectItem>
+  <van-popup
+    v-model:show="showCollect"
+    position="bottom"
+    :style="{ height: '100%' }"
+  >
+    <collectItem
+      v-if="showCollect"
+      :number="number"
+      @close="showCollect = false"
+    ></collectItem>
   </van-popup>
   <!-- 机器人聊天弹窗 -->
-  <van-popup v-model:show="showChat" position="bottom" :style="{ height: '100%' }">
-    <chatItem v-if="showChat" @close="showChat = close"></chatItem>
+  <van-popup
+    v-model:show="showChat"
+    position="bottom"
+    :style="{ height: '100%' }"
+  >
+    <chatItem
+      v-if="showChat"
+      @close="showChat = close"
+    ></chatItem>
   </van-popup>
 </template>
 
@@ -89,21 +152,25 @@ export default {
       showConfirmDialog({
         title: '是否要退出登陆？',
         message: ''
-      }).then(() => {
-        // 确认退出登陆，把null赋值给本地存储和state
-        this.$store.commit('setUser', null)
-        console.log('已删除TOKEN')
-      }).catch(() => {
-        showNotify({
-          type: 'primary',
-          message: '登陆已取消',
-          duration: 800
-        })
       })
+        .then(() => {
+          // 确认退出登陆，把null赋值给本地存储和state
+          this.$store.commit('setUser', null)
+          console.log('已删除TOKEN')
+        })
+        .catch(() => {
+          showNotify({
+            type: 'primary',
+            message: '登陆已取消',
+            duration: 800
+          })
+        })
     },
     async loadUserInfo() {
       try {
-        const { data: { data } } = await getUserInfo()
+        const {
+          data: { data }
+        } = await getUserInfo()
         console.log('获取用户数据成功', data)
         this.userInfo = data
       } catch (err) {

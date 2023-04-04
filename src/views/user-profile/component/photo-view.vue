@@ -1,8 +1,20 @@
 <template>
   <div>
-    <van-nav-bar class="nav-bar" title="设置头像" right-text="完成" left-arrow @click-right="ok" @click-left="$emit('close')" />
+    <van-nav-bar
+      class="nav-bar"
+      title="设置头像"
+      right-text="完成"
+      left-arrow
+      @click-right="ok"
+      @click-left="$emit('close')"
+    />
     <div class="photo-box">
-      <img class="user-photo" :src="photo" alt="用户头像" ref="img">
+      <img
+        class="user-photo"
+        :src="photo"
+        alt="用户头像"
+        ref="img"
+      />
     </div>
   </div>
 </template>
@@ -18,7 +30,7 @@ export default {
   },
   methods: {
     ok() {
-      this.cropper.getCroppedCanvas().toBlob(blob => {
+      this.cropper.getCroppedCanvas().toBlob((blob) => {
         console.log(blob)
         this.$emit('photoOk', blob)
       })
@@ -49,7 +61,7 @@ export default {
 }
 .photo-box {
   width: 100%;
-  height: calc(100vh - 46PX);
+  height: calc(100vh - 46px);
   display: flex;
   justify-content: center;
   align-items: center;

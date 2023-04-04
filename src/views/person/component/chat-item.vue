@@ -1,17 +1,40 @@
 <template>
-  <div class="chat" ref="chat">
+  <div
+    class="chat"
+    ref="chat"
+  >
     <!-- 导航栏 -->
-    <van-nav-bar class="collect-nav-bar" title="小智同学" left-arrow @click-left="$emit('close')" />
+    <van-nav-bar
+      class="collect-nav-bar"
+      title="小智同学"
+      left-arrow
+      @click-left="onLeft"
+    />
 
     <!-- 聊天内容列表 -->
     <van-list class="list">
-      <van-cell v-for="(item, index) in messageList" :key="index" :title="item.msg" />
+      <van-cell
+        v-for="(item, index) in messageList"
+        :key="index"
+        :title="item.msg"
+      />
     </van-list>
 
     <!-- 输入栏 -->
-    <van-field class="input" v-model="message" center clearable placeholder="请输入信息">
+    <van-field
+      class="input"
+      v-model="message"
+      center
+      clearable
+      placeholder="请输入信息"
+    >
       <template #button>
-        <van-button size="normal" type="primary" @click="onSend">发送</van-button>
+        <van-button
+          size="normal"
+          type="primary"
+          @click="onSend"
+          >发送</van-button
+        >
       </template>
     </van-field>
   </div>
@@ -48,6 +71,11 @@ export default {
       // 将chat.scrollTop设置为scrollHeight
       chat.scrollTop = chat.scrollHeight
       console.log(chat.scrollTop)
+    },
+    onLeft() {
+      this.$emit('close')
+      // 点击返回按钮，关闭socket服务
+      this.socket.close()
     }
   },
   watch: {

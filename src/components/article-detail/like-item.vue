@@ -1,30 +1,38 @@
 <template>
-  <van-icon :class="{liked:article.attitude === 1}" class="like" :name="article.attitude === -1 ? 'good-job-o' : 'good-job'" @click="onlike" />
+  <van-icon
+    :class="{ liked: article.attitude === 1 }"
+    class="like"
+    :name="article.attitude === -1 ? 'good-job-o' : 'good-job'"
+    @click="onlike"
+  />
 </template>
 
 <script>
 import { showNotify } from 'vant'
 import { setLike, cancelLike } from '@/api/user'
+import { mapState } from 'vuex'
 export default {
   data() {
-    return {
-
-    }
+    return {}
   },
   methods: {
     async onlike() {
-      try {
-        if (this.article.attitude === -1) {
-          await setLike(this.article.art_id)
-          this.$emit('like', 1)
-          console.log('111')
-        } else {
-          await cancelLike(this.article.art_id)
-          this.$emit('like', -1)
-          console.log('000')
+      if (this.user) {
+        // 先判断有没有用户信息，如果没有，提示未登录
+        try {
+          if (this.article.attitude === -1) {
+            await setLike(this.article.art_id)
+            this.$emit('like', 1)
+          } else {
+            await cancelLike(this.article.art_id)
+            this.$emit('like', -1)
+          }
+        } catch (err) {
+          console.log(err)
+          showNotify({ type: 'danger', message: '点赞失败，稍后重试' })
         }
-      } catch (err) {
-        showNotify({ type: 'danger', message: '操作失败' })
+      } else {
+        showNotify({ type: 'danger', message: '未登录，请登录后再试' })
       }
     }
   },
@@ -33,6 +41,9 @@ export default {
       type: Object,
       required: true
     }
+  },
+  computed: {
+    ...mapState(['user'])
   }
 }
 </script>
@@ -42,6 +53,6 @@ export default {
   color: #777777;
 }
 .liked {
-    color: #e5645f;
+  color: #e5645f;
 }
 </style>

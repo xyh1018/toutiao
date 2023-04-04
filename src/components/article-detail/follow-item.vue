@@ -1,8 +1,25 @@
 <template>
-  <van-button :loading="loadingStatus" v-if="isFollowed.is_followed" class="follow-btn" round size="small"
-    @click="onCancel">已关注</van-button>
-  <van-button :loading="loadingStatus" v-else class="follow-btn" type="info" color="#3296fa" round size="small"
-    icon="plus" @click="onFollow">关注</van-button>
+  <van-button
+    :loading="loadingStatus"
+    v-if="isFollowed.is_followed"
+    class="follow-btn"
+    round
+    size="small"
+    @click="onCancel"
+    >已关注</van-button
+  >
+  <van-button
+    :loading="loadingStatus"
+    v-else
+    class="follow-btn"
+    type="info"
+    color="#3296fa"
+    round
+    size="small"
+    icon="plus"
+    @click="onFollow"
+    >关注</van-button
+  >
 </template>
 
 <script>

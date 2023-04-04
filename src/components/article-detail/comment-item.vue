@@ -1,12 +1,22 @@
 <template>
   <van-cell class="comment-item">
     <template #icon>
-      <van-image class="avatar" round fit="cover" :src="comment.aut_photo" />
+      <van-image
+        class="avatar"
+        round
+        fit="cover"
+        :src="comment.aut_photo"
+      />
     </template>
     <template #title>
       <div class="title-wrap">
         <div class="user-name">{{ comment.aut_name }}</div>
-        <van-button class="like-btn" :icon="comment.is_liking ? 'good-job' : 'good-job-o'" @click="like">赞</van-button>
+        <van-button
+          class="like-btn"
+          :icon="comment.is_liking ? 'good-job' : 'good-job-o'"
+          @click="like"
+          >赞</van-button
+        >
       </div>
     </template>
     <template #label>
@@ -14,7 +24,13 @@
         <p class="comment-content">{{ comment.content }}</p>
         <div class="bottom-info">
           <span class="comment-pubdate">{{ time }}</span>
-          <van-button v-if="isShowReply" class="reply-btn" round @click="onReply">回复 {{ comment.reply_count }}</van-button>
+          <van-button
+            v-if="isShowReply"
+            class="reply-btn"
+            round
+            @click="onReply"
+            >回复 {{ comment.reply_count }}</van-button
+          >
         </div>
       </div>
     </template>

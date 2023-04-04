@@ -1,8 +1,23 @@
 <template>
   <div class="comment">
-    <van-empty v-if="!totalCount" description="暂无评论" />
-    <van-list v-model:loading="loading" :finished="finished" :immediate-check="false" @load="onLoad">
-      <CommentItem :isShowReply="ShowReply" :comment="item" v-for="item in comment" :key="item.com_id" @liking="onLiking" @reply="$emit('reply',$event)"/>
+    <van-empty
+      v-if="!totalCount"
+      description="暂无评论"
+    />
+    <van-list
+      v-model:loading="loading"
+      :finished="finished"
+      :immediate-check="false"
+      @load="onLoad"
+    >
+      <CommentItem
+        :isShowReply="ShowReply"
+        :comment="item"
+        v-for="item in comment"
+        :key="item.com_id"
+        @liking="onLiking"
+        @reply="$emit('reply', $event)"
+      />
     </van-list>
   </div>
 </template>
@@ -24,7 +39,9 @@ export default {
     async onLoad() {
       try {
         // 获取数据
-        const { data: { data } } = await getComment({
+        const {
+          data: { data }
+        } = await getComment({
           type: this.type, // 评论类型,a为文章评论,c为评论的回复
           source: this.source, // 文章id或评论id
           offset: this.offset,
@@ -87,6 +104,6 @@ export default {
 
 <style lang="scss" scoped>
 .comment {
-  padding-bottom: 44PX;
+  padding-bottom: 44px;
 }
 </style>

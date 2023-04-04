@@ -4,7 +4,9 @@
       <component :is="Component" />
     </keep-alive>
   </router-view>
-  <!-- <RouterView></RouterView> -->
+  <!-- <keep-alive include="LayoutView">
+    <RouterView></RouterView>
+  </keep-alive> -->
 </template>
 
 <script>

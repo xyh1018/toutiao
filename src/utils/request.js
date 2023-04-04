@@ -27,6 +27,7 @@ request.interceptors.request.use(function (config) {
   return config
 }, function (error) {
   // 对请求错误做些什么
+  console.log(error)
   return Promise.reject(error)
 })
 
@@ -38,12 +39,13 @@ request.interceptors.response.use(function (response) {
   return response
 }, async function (error) {
   //
+  console.log(error)
   const status = error.response.status
   //
   if (status === 401) {
     const { user } = store.state
     const refreshToken = getItem('TOUTIAO_USER').refresh_token
-    if (!user || !user.token) {
+    if (!user || (!user.token && !user.refresh_token)) {
       // 跳转到登陆页
       console.log('跳转到登陆页', refreshToken)
       return redirectLogin()
